@@ -81,6 +81,8 @@ figcaption {
   @keyframes adflash{0%{background:#ff0080}100%{background:#00e5ff;color:#000}}
   .ad-move{position:fixed;z-index:9997;padding:10px 14px;background:#ffeb3b;color:#d50000;
     border:3px dashed #d50000;font:bold 16px Arial,sans-serif;cursor:pointer}
+  .ad-move2{position:fixed;z-index:9997;padding:10px 14px;background:#7289da;color:#fff;
+    border:3px dotted #fff;font:bold 16px Arial,sans-serif;cursor:pointer;text-decoration:none}
   .ad-pop{position:fixed;z-index:9999;width:min(300px,80vw);padding:18px;background:#fff;color:#000;
     border:4px solid #00c853;box-shadow:6px 6px 0 #000;text-align:center;font:bold 18px Arial,sans-serif}
   .ad-pop button{margin-top:12px;padding:8px 14px;font-size:15px;cursor:pointer}
@@ -89,6 +91,7 @@ figcaption {
 
 <div class="ad-flash">🔥 HOT SINGLES IN YOUR AREA ARE LOOKING AT THIS WEBSITE 🔥</div>
 <div class="ad-move" id="adMove">⚠️ YOUR COMPUTER HAS 7 VIRUSES ⚠️</div>
+<div class="ad-move2" id="adMove2">‼️ PRESS FOR FREE NITRO ‼️</div>
 
 <script>
 (function () {
@@ -104,6 +107,18 @@ figcaption {
     m.style.left = x + 'px'; m.style.top = y + 'px';
   }, 16);
   m.onclick = function(){ alert('You clicked an ad. Congratulations. Nothing happened.'); };
+
+  // discord ad, bounces a different speed/direction
+  var d = document.getElementById('adMove2'), x2 = 300, y2 = 200, dx2 = -2, dy2 = 3;
+  setInterval(function () {
+    x2 += dx2; y2 += dy2;
+    if (x2 < 0 || x2 + d.offsetWidth > W())  dx2 = -dx2;
+    if (y2 < 0 || y2 + d.offsetHeight > H()) dy2 = -dy2;
+    d.style.left = x2 + 'px'; d.style.top = y2 + 'px';
+  }, 16);
+  d.onclick = function () {
+    window.open('https://discord.gg/AWGDkrG9ju', '_blank', 'noopener');
+  };
 
   // 2) fake u won thing
   var count = 0;
